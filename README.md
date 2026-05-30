@@ -2,7 +2,7 @@
 
 A Flask-based web application to manage and track personal income and expenses with category-wise organization and dashboard visualization.
 
-## Features :
+## Features
 
 • User Registration and Login system
 • Add income and expense transactions
@@ -13,7 +13,7 @@ A Flask-based web application to manage and track personal income and expenses w
 • Dynamic category selection based on Income/Expense type
 • Interactive bar chart for financial overview
 
-## Technologies Used :
+## Technologies Used
 
 Python
 Flask
@@ -24,7 +24,7 @@ CSS
 JavaScript (Chart.js)
 
 
-## Installation :
+## Installation
 
 1. Clone the repository
 2. Install dependencies:
@@ -34,7 +34,7 @@ python app.py
 4. Open in browser:
 http://127.0.0.1:5000
 
-## Project Structure :
+## Project Structure
 
 • app.py - Main Flask application
 • models.py - Database models
@@ -42,15 +42,15 @@ http://127.0.0.1:5000
 • templates/ - HTML templates
 •static/css/ - Styling files
 
-## Categories :
+## Categories
 
-Income :-
+Income :
 
 Salary
 Freelance
 Business
 
-Expense :-
+Expense :
 
 Food
 Rent
@@ -62,4 +62,6 @@ Entertainment
 
 # Author
 
-Niharika
+Niharika Chappa
+
+B.Tech CSE Student | Python & Flask Developer
