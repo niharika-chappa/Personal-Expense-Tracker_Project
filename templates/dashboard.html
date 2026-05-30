@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="dashboard-title">Finance Dashboard</h1>
+
+<div class="cards-container">
+
+    <div class="card balance-card">
+        <h3>Total Balance</h3>
+        <p>₹ {{ balance }}</p>
+    </div>
+
+    <div class="card income-card">
+        <h3>Total Income</h3>
+        <p>₹ {{ income }}</p>
+    </div>
+
+    <div class="card expense-card">
+        <h3>Total Expense</h3>
+        <p>₹ {{ expense }}</p>
+    </div>
+
+</div>
+
+<div class="chart-section">
+
+    <div class="chart-card">
+        <h2>Financial Overview</h2>
+        <canvas id="expenseChart"></canvas>
+    </div>
+
+</div>
+
+<div class="recent-transactions">
+
+    <h2>Recent Transactions</h2>
+
+    <table>
+
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Type</th>
+        </tr>
+
+        {% for transaction in transactions %}
+
+        <tr>
+            <td>{{ transaction.title }}</td>
+            <td>{{ transaction.category }}</td>
+            <td>₹ {{ transaction.amount }}</td>
+            <td>
+                {% if transaction.type == 'Income' %}
+                    <span class="income-badge">Income</span>
+                {% else %}
+                    <span class="expense-badge">Expense</span>
+                {% endif %}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('expenseChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Income', 'Expense', 'Balance'],
+        datasets: [{
+            label: 'Amount (₹)',
+            data: [
+                {{ income }},
+                {{ expense }},
+                {{ balance }}
+            ],
+            backgroundColor: [
+                '#22c55e',
+                '#ef4444',
+                '#3b82f6'
+            ],
+            borderRadius: 10
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#e2e8f0'
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#e2e8f0'
+                }
+            }
+        }
+    }
+});
+
+</script>
+
+{% endblock %}

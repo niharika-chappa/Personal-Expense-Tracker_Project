@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2 class="logo">ExpenseTracker</h2>
+
+    {% if current_user.is_authenticated %}
+
+        <a href="{{ url_for('dashboard') }}">
+            <i class="fa-solid fa-table-columns"></i>
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('add_transaction') }}">
+            <i class="fa-solid fa-wallet"></i>
+            Add Transaction
+        </a>
+
+        <a href="{{ url_for('transactions') }}">
+            <i class="fa-solid fa-list"></i>
+            Transactions
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    {% else %}
+
+        <a href="{{ url_for('home') }}">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="{{ url_for('login') }}">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+        </a>
+
+        <a href="{{ url_for('register') }}">
+            <i class="fa-solid fa-user-plus"></i>
+            Register
+        </a>
+
+    {% endif %}
+
+</div>
+
+<div class="main-content">
+
+    <div class="flash-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<script>
+    setTimeout(() => {
+        document.querySelectorAll('.flash-message').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(-10px)';
+            setTimeout(() => el.remove(), 400);
+        });
+    }, 2500);
+</script>
+
+</body>
+</html>

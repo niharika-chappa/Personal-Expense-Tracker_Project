@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="dashboard-title">All Transactions</h2>
+
+<div class="recent-transactions">
+
+    <table>
+
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Type</th>
+        </tr>
+
+        {% for transaction in transactions %}
+
+        <tr>
+            <td>{{ transaction.title }}</td>
+
+            <td>₹ {{ transaction.amount }}</td>
+
+            <td>{{ transaction.category }}</td>
+
+            <td>
+                {% if transaction.type == 'Income' %}
+                    <span class="income-badge">Income</span>
+                {% else %}
+                    <span class="expense-badge">Expense</span>
+                {% endif %}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}
