@@ -61,6 +61,6 @@ Expense :
 * Entertainment
 # Author
 
-Niharika Chappa
+**Niharika Chappa**
 
 B.Tech CSE Student | Python & Flask Developer
